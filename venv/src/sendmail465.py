@@ -4,6 +4,7 @@ from email import encoders
 from email.header import Header
 from email.mime.text import MIMEText
 from email.utils import parseaddr, formataddr
+from smtplib import SMTP_SSL
 import smtplib
 import random
 
@@ -31,7 +32,7 @@ msg['Subject'] = Header(u'来自TBDS的告警……', 'utf-8').encode()
 
 r_a = random.uniform(0, 100)
 
-server = smtplib.SMTP(smtp_server, 25)
+server = SMTP_SSL(smtp_server)
 server.set_debuglevel(1)
 #server.ehlo()
 server.login(from_addr, password)
